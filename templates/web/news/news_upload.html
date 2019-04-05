@@ -63,7 +63,6 @@
           <hr class="mt-0 mb-4">
     <form  method="POST" action="{{ action }}" enctype="multipart/form-data">
 	{% csrf_token %}
-  <input type="hidden" name="user" value="{{ request.user }}">
 	<div class="form-group">
     <label class="col-form-label-sm">{{ newsupload.title.label }}</label>
     {{ newsupload.title }}

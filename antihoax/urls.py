@@ -3,8 +3,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from user.views import index, special, user_logout, user_login
-from news import views 
-from user import views 
+from news import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),

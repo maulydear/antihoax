@@ -46,11 +46,12 @@ def news_upload(request):
     return TemplateResponse(request,'web/news/news_upload.html', context)
 
 def news_detail(request, pk):
-    news = get_object_or_404(News, pk=pk)   
-    context = dict(
+	news = get_object_or_404(News, pk=pk)
+	context = dict(
 		newsdetail = news
-	)  
-    return TemplateResponse(request,'web/news/news_detail.html', context)
+	)
+
+	return TemplateResponse(request,'web/news/news_detail.html', context)
 
 def news_update(request, pk):
 	news = get_object_or_404(News, pk=pk)
@@ -63,7 +64,7 @@ def news_update(request, pk):
 	else:
 		print(form.errors, 'FORM ERROR')
 
-	return TemplateResponse(request,'web/news/index.html')
+	return TemplateResponse(request,'web/news/news_update.html')
 
 def news_history(request, pk):
     news = News.objects.filter(user=pk)

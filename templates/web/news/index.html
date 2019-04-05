@@ -92,7 +92,7 @@
                     </div>
                     <!-- /.widget -->
                     <div class="widget">
-                      <h3 class="widgettitle">Recent News  {{ requet.user }}</h3>
+                      <h3 class="widgettitle">Recent News </h3>
                       <div>
                         {% for n in newslimit %}
                         <div class="listing-row-medium">
@@ -133,14 +133,14 @@
                       <!-- /.post-title -->
                       <div class="post-meta">
                         <div class="post-meta-item">
-                          Posted by <a href="">{{ n.username }}</a>
+                          Posted by <a href="">{{ n.user }}</a>
                         </div>
                         <div class="post-meta-item">
                           {{ n.category }}
                         </div>
                         <!-- /.post-meta-item -->
                         <div class="post-meta-item">
-                          <i class="fa fa-calendar"></i> 3/28/2016
+                          <i class="fa fa-calendar"></i> <a href="">{{ n.date }}</a>
                         </div>
                         <!-- /.post-meta-item -->
                         <div class="post-meta-item">
@@ -471,32 +471,16 @@
           <div class="side-user">
             <span class="avatar" style="background-image: url('../assets/img/tmp/user-10.jpg');"></span>
             <span class="side-user-avatar-name">
-              <strong>William F. Kane</strong>
-              <span>System administrator</span>
+              <strong>{{ request.user }}</strong>
+              <span>User</span>
             </span>
-            <a href="#" class="side-user-avatar-action">
-              <i class="fa fa-cog"></i>
-            </a>
+            <a href="#" class="side-user-avatar-action"></a>
           </div>
           <!-- /.side-user -->
           <ul class="nav flex-column">
-            <li class="nav-item"><a href="admin-dashboard.html" class="nav-link">Author Dashboard</a></li>
-            <li class="nav-item"><a href="admin-listings.html" class="nav-link">Listings Queue</a></li>
-            <li class="nav-item"><a href="admin-projects.html" class="nav-link">Running Projects</a></li>
-            <li class="nav-item"><a href="admin-tasks.html" class="nav-link">Tasks Management</a></li>
-            <li class="nav-item"><a href="admin-users.html" class="nav-link">User Accounts</a></li>
+            <li class="nav-item"><a href="{% url 'news:news_history' request.user.id %}" class="nav-link">History Upload</a></li>
           </ul>
-          <h3>Welcome Back</h3>
-          <form class="form-dark" method="post" action="?">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Username">
-            </div>
-            <!-- /.form-group -->
-            <div class="form-group">
-              <input type="password" class="form-control" placeholder="Password">
-            </div>
-            <!-- /.form-group -->
-            <button class="btn btn-primary pull-right" type="submit">Login</button>
+            <button class="btn btn-primary pull-right" type="submit"><a href="{% url 'user:user_logout' %}">Logout</a></button>
           </form>
         </div>
         <!-- /.side-inner -->

@@ -35,7 +35,7 @@
                       <a href="{% url 'news:news_upload' %}" class="nav-link ">Upload</a>
                     </li>
                     <li class="nav-item">
-                      <a href="{% url 'news:news_history' %}" class="nav-link">History Upload</a>
+                      <a href="{% url 'news:news_history' request.user.id %}" class="nav-link">History Upload</a>
                     </li>
                   </ul>
                 </div>
@@ -71,14 +71,14 @@
                       <!-- /.post-title -->
                       <div class="post-meta">
                         <div class="post-meta-item">
-                          Posted by <a href="">{{ n.username }}</a>
+                          Posted by <a href="">{{ n.user }}</a>
                         </div>
                         <div class="post-meta-item">
                           {{ n.category }}
                         </div>
                         <!-- /.post-meta-item -->
                         <div class="post-meta-item">
-                          <i class="fa fa-calendar"></i> 3/28/2016
+                          <i class="fa fa-calendar"></i> {{ n.date }}
                         </div>
                         <!-- /.post-meta-item -->
                         <div class="post-meta-item">
