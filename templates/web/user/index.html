@@ -1,0 +1,498 @@
+{% extends "web/base.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="page-wrapper">
+      <div class="header-wrapper">
+        <div class="header">
+          <div class="container">
+            <div class="header-inner">
+              <div class="navigation-toggle toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <!-- /.header-toggle -->
+              <div class="header-logo">
+                <a href="index.html">
+                  <img src="{% static 'assets/img/logo.svg' %}" class="svg" alt="Home">
+                </a>
+                <a href="{% url 'news:index' %}" class="header-title">AntiHoax</a>
+              </div>
+              <!-- /.header-logo -->
+              <div class="header-nav">
+                <div class="primary-nav-wrapper">
+                  <ul class="nav">
+                    <li class="nav-item has-sub-menu">
+                      <a href="#" class="nav-link ">Menu</a>
+                      <ul class="sub-menu">
+                        <li><a href="{% url 'user:user_login' %}">Login</a></li>
+                        <li><a href="{% url 'user:register' %}">Registration</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+                <!-- /.primary-nav-wrapper -->
+              </div>
+              <div class="header-toggle toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <!-- /.header-toggle -->
+              
+            </div>
+            <!-- /.header-inner -->
+          </div>
+          <!-- /.container -->
+        </div>
+        <!-- /.header -->
+      </div>
+      <!-- /.header-wrapper -->
+      <div class="main-wrapper">
+        <div class="main">
+          <div class="main-inner">
+            <div class="page-title">
+              <div class="container">
+                <h1>Recent news
+                </h1>
+                <div class="page-title-actions">
+                </div>
+                <!-- /.page-title-actions -->
+              </div>
+              <!-- /.container-->
+            </div>
+            <!-- /.page-title -->
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4 col-lg-3">
+                  <div class="sidebar">
+                    <div class="widget">
+                      <h3 class="widgettitle">Search Site</h3>
+                      <div class="search">
+                        <form method="get" action="">
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            <input type="text" id="searchbox" name="s" value="{{ request.GET.s }}" placeholder="Search the site" class="form-control">
+                          </div>
+                          <!-- /.form-group -->
+                        </form>
+                      </div>
+                      <!-- /.search -->
+                    </div>
+                    <!-- /.widget -->
+                    <div class="widget">
+                      <h3 class="widgettitle">Recent News  </h3>
+                      <div>
+                        {% for n in newslimit %}
+                        <div class="listing-row-medium">
+                          <div class="listing-row-medium-inner">
+                            <a href="#" class="listing-row-medium-image">
+                              <img src="/media/{{ n.image }}"/>
+                            </a>
+                            <div class="listing-row-medium-content">
+                              <a class="listing-row-medium-category tag" href="#">{{ n.category }}</a>
+                              <h4 class="listing-row-medium-title"><a href="{% url 'news:news_detail' n.id %}">{{ n.title }}</a></h4>
+                              <!-- /.listing-row-medium-address -->
+                            </div>
+                            <!-- /.listing-row-medium-content -->
+                          </div>
+                          <!-- /.listing-row-medium-inner -->
+                        </div>
+                        {% endfor %}
+                        <!-- /.listings-row-medium -->
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.sidebar -->
+                </div>
+                <!-- /.col-* -->
+                
+                <div class="col-md-8 col-lg-9">
+                  <div class="posts">
+                    {% for n in news %}
+                    <div class="post">
+                      <div class="post-image">
+                        <img src="/media/{{ n.image }}"/>
+                      </div>
+                      <!-- /.post-image -->
+                      <div class="post-title">
+                        <h2><a href="">{{ n.title }}</a></h2>
+                      </div>
+                      <!-- /.post-title -->
+                      <div class="post-meta">
+                        <div class="post-meta-item">
+                          Posted by <a href="">{{ n.username }}</a>
+                        </div>
+                        <div class="post-meta-item">
+                          {{ n.category }}
+                        </div>
+                        <!-- /.post-meta-item -->
+                        <div class="post-meta-item">
+                          <i class="fa fa-calendar"></i> 3/28/2016
+                        </div>
+                        <!-- /.post-meta-item -->
+                        <div class="post-meta-item">
+                          <i class="fa fa-comment"></i> <a href="">{{ n.url }}</a>
+                        </div>
+                        <!-- /.post-meta-item -->
+                      </div>
+                      <!-- /.post-meta -->
+                      <div class="post-content">
+                        <p>{{ n.desc }}</p>
+                      </div>
+                      <!-- /.post-content -->
+                      <div class="post-read-more">
+                        <a href="{% url 'news:news_detail' n.id %}" class="btn btn-primary">Read More <i class="fa fa-chevron-right"></i></a>
+                      </div>
+                      <!-- /.post-read-more -->
+                    </div>
+                    {% endfor %}
+                  <ul class="pagination pull-right">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                  </ul>
+                </div>
+                <!-- /.col-* -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+          </div>
+          <!-- /.main-inner -->
+        </div>
+        <!-- /.main -->
+      </div>
+      <!-- /.main-wrapper -->
+      <div class="footer-wrapper">
+        <div class="footer">
+          <div class="footer-inner">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="widget">
+                    <h3>
+                      <img src="assets/img/logo.svg" class="svg" alt="Home">
+                      Explorer Template
+                      <span>Directory HTML Template</span>
+                    </h3>
+                    <p>
+                      Explorer is an advanced directory HTML template. It contains all HTML components
+                      required for creating beautiful and functional websites.
+                    </p>
+                    <ul class="social">
+                      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                      <li><a href="#"><i class="fa fa-google"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <!-- /.col-* -->
+                <div class="col-lg-4">
+                  <div class="widget">
+                    <ul class="nav nav-pills">
+                      <li class="nav-item"><a class="nav-link" href="index-directory.html">Politics</a></li>
+                      <li class="nav-item"><a class="nav-link" href="index-classified.html">Entertainment</a></li>
+                      <li class="nav-item"><a class="nav-link" href="index-job-board.html">Sport</a></li>
+                      <li class="nav-item"><a class="nav-link" href="index-real-estate.html">Real Estate Version</a></li>
+                    </ul>
+                  </div>
+                  <!-- /.widget -->
+                </div>
+                <!-- /.col-* -->
+                <div class="col-lg-4">
+                  <div class="widget">
+                    <h3>Best deals in your inbox</h3>
+                    <p>
+                      Join our newsletter for the most recent information. FYI this is not working form, just an example.
+                    </p>
+                    <form method="post">
+                      <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Your e-mail address">
+                      </div>
+                      <!-- /.form-group -->
+                      <div class="form-group clearfix">
+                        <button type="submit" class="btn btn-primary pull-right">Join Newsletter</button>
+                      </div>
+                      <!-- /.form-group -->
+                    </form>
+                  </div>
+                  <!-- /.widget -->
+                </div>
+                <!-- /.col-* -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.container -->
+          </div>
+          <!-- /.footer-inner -->
+        </div>
+        <!-- /.footer -->
+      </div>
+      <!-- /.footer-wrapper -->
+    </div>
+    <!-- /.page-wrapper -->
+    <div id="modal-submit" class="modal fade">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Submit New Listing</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="post" action="?" class="mb80">
+              <fieldset>
+                <legend>Basic Information</legend>
+                <div class="form-group">
+                  <label>Title</label>
+                  <input type="text" class="form-control">
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>Description</label>
+                  <textarea class="form-control" rows="6"></textarea>
+                </div>
+                <!-- /.form-group -->
+              </fieldset>
+              <fieldset>
+                <legend>Payment Information</legend>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Package</label>
+                      <select class="form-control">
+                        <option value="">Bronze + $10</option>
+                      </select>
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                  <!-- /.col-* -->
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Payment Method</label>
+                      <select class="form-control">
+                        <option value="">Paypal</option>
+                      </select>
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                  <!-- /.col-* -->
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Duration</label>
+                      <select class="form-control">
+                        <option value="">1 Year (Save 10%)</option>
+                      </select>
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                  <!-- /.col-* -->
+                </div>
+                <!-- /.row -->
+              </fieldset>
+              <fieldset>
+                <legend>Location</legend>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div id="location-google-map" style="height: 450px;"></div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>Address</label>
+                      <input type="text" class="form-control location-google-map-search">
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                      <label>Latitude</label>
+                      <input type="text" class="form-control" id="listing_location_latitude">
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                      <label>Longitude</label>
+                      <input type="text" class="form-control" id="listing_location_longitude">
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                      <label>Country</label>
+                      <select class="form-control"></select>
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                      <label>Location</label>
+                      <select class="form-control"></select>
+                    </div>
+                    <!-- /.form-group -->
+                    <div class="form-group">
+                      <label>Sublocation</label>
+                      <select class="form-control"></select>
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                </div>
+                <!-- /.row -->
+              </fieldset>
+              <fieldset>
+                <legend>Contact Information</legend>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Country</label>
+                      <input type="text" class="form-control">
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                  <!-- /.col-* -->
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>City</label>
+                      <input type="text" class="form-control">
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                  <!-- /.col-* -->
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Address</label>
+                      <input type="text" class="form-control">
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                  <!-- /.col-* -->
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Phone</label>
+                      <input type="text" class="form-control">
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                  <!-- /.col-* -->
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>E-mail</label>
+                      <input type="text" class="form-control">
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                  <!-- /.col-* -->
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>Website</label>
+                      <input type="text" class="form-control">
+                    </div>
+                    <!-- /.form-group -->
+                  </div>
+                  <!-- /.col-* -->
+                </div>
+              </fieldset>
+              <fieldset>
+                <legend>Amenities</legend>
+                <div class="checkbox-list">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input"> Air conditioning
+                    </label>
+                  </div>
+                  <!-- /.form-check -->
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input"> Balcony
+                    </label>
+                  </div>
+                  <!-- /.form-check -->
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input"> Bedding
+                    </label>
+                  </div>
+                  <!-- /.form-check -->
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input"> Cable TV
+                    </label>
+                  </div>
+                  <!-- /.form-check -->
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input"> Cleaning after exit
+                    </label>
+                  </div>
+                  <!-- /.form-check -->
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input"> Cofee pot
+                    </label>
+                  </div>
+                  <!-- /.form-check -->
+                </div>
+                <!-- /.checkbox-list -->
+              </fieldset>
+              <fieldset>
+                <legend>Additional Information</legend>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input"> Send me newsletter
+                  </label>
+                </div>
+                <!-- /.form-check -->
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input"> I agree with terms &amp; conditions
+                  </label>
+                </div>
+                <!-- /.form-check -->
+              </fieldset>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="side-wrapper">
+      <div class="side">
+        <div class="side-inner">
+          <div class="side-user">
+            <span class="avatar" style="background-image: url('../assets/img/tmp/user-10.jpg');"></span>
+            <span class="side-user-avatar-name">
+              <strong>William F. Kane</strong>
+              <span>System administrator</span>
+            </span>
+            <a href="#" class="side-user-avatar-action">
+              <i class="fa fa-cog"></i>
+            </a>
+          </div>
+          <!-- /.side-user -->
+          <ul class="nav flex-column">
+            <li class="nav-item"><a href="admin-dashboard.html" class="nav-link">Author Dashboard</a></li>
+            <li class="nav-item"><a href="admin-listings.html" class="nav-link">Listings Queue</a></li>
+            <li class="nav-item"><a href="admin-projects.html" class="nav-link">Running Projects</a></li>
+            <li class="nav-item"><a href="admin-tasks.html" class="nav-link">Tasks Management</a></li>
+            <li class="nav-item"><a href="admin-users.html" class="nav-link">User Accounts</a></li>
+          </ul>
+          <h3>Welcome Back</h3>
+          <form class="form-dark" method="post" action="?">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Username">
+            </div>
+            <!-- /.form-group -->
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="Password">
+            </div>
+            <!-- /.form-group -->
+            <button class="btn btn-primary pull-right" type="submit">Login</button>
+          </form>
+        </div>
+        <!-- /.side-inner -->
+      </div>
+      <!-- /.side -->
+    </div>
+    <!-- /.side-wrapper -->
+    <div class="side-overlay"></div>
+{% endblock body %}

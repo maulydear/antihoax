@@ -1,0 +1,110 @@
+{% extends "web/base.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="page-wrapper">
+      <div class="header-wrapper">
+        <div class="header">
+          <div class="container">
+            <div class="header-inner">
+              <div class="navigation-toggle toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <!-- /.header-toggle -->
+              <div class="header-logo">
+                <a href="index.html">
+                  <img src="{% static 'assets/img/logo.svg' %}" class="svg" alt="Home">
+                </a>
+                <a href="{% url 'news:index' %}" class="header-title">AntiHoax</a>
+              </div>
+              <!-- /.header-logo -->
+              <div class="header-nav">
+                <div class="primary-nav-wrapper">
+                  <ul class="nav">
+                    <li class="nav-item has-sub-menu">
+                      <a href="#" class="nav-link ">Home</a>
+                      <ul class="sub-menu">
+                        <li><a href="{% url 'news:index' %}?category=politics"><b>1.</b> &nbsp;&nbsp;Politics</a></li>
+                        <li><a href="{% url 'news:index' %}?category=entertainment"><b>2.</b> &nbsp;&nbsp;Entertainment</a></li>
+                        <li><a href="{% url 'news:index' %}?category=sport"><b>3.</b> &nbsp;&nbsp;Sport</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="{% url 'news:news_upload' %}" class="nav-link ">Upload</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{% url 'news:news_history' %}" class="nav-link">History Upload</a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- /.primary-nav-wrapper -->
+              </div>
+              <div class="header-toggle toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <!-- /.header-toggle -->
+              
+            </div>
+            <!-- /.header-inner -->
+          </div>
+          <!-- /.container -->
+        </div>
+        <!-- /.header -->
+      </div>
+      <!-- /.header-wrapper -->
+
+      <div class="col-md-8 col-lg-9">
+                  <div class="posts">
+                    {% for n in news %}
+                    <div class="post">
+                      <div class="post-image">
+                        <img src="/media/{{ n.image }}"/>
+                      </div>
+                      <!-- /.post-image -->
+                      <div class="post-title">
+                        <h2><a href="">{{ n.title }}</a></h2>
+                      </div>
+                      <!-- /.post-title -->
+                      <div class="post-meta">
+                        <div class="post-meta-item">
+                          Posted by <a href="">{{ n.username }}</a>
+                        </div>
+                        <div class="post-meta-item">
+                          {{ n.category }}
+                        </div>
+                        <!-- /.post-meta-item -->
+                        <div class="post-meta-item">
+                          <i class="fa fa-calendar"></i> 3/28/2016
+                        </div>
+                        <!-- /.post-meta-item -->
+                        <div class="post-meta-item">
+                          <i class="fa fa-comment"></i> <a href="">{{ n.url }}</a>
+                        </div>
+                        <!-- /.post-meta-item -->
+                      </div>
+                      <!-- /.post-meta -->
+                      <div class="post-content">
+                        <p>{{ n.desc }}</p>
+                      </div>
+                      <!-- /.post-content -->
+                      <div class="post-read-more">
+                        <a href="{% url 'news:news_detail' n.id %}" class="btn btn-primary">Read More <i class="fa fa-chevron-right"></i></a>
+                      </div>
+                      <!-- /.post-read-more -->
+                    </div>
+                    {% endfor %}
+                  <ul class="pagination pull-right">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                  </ul>
+                </div>
+                <!-- /.col-* -->
+              </div>
+{% endblock body %}

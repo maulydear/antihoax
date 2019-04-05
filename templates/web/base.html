@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+    <link href="{% static 'assets/css/trackpad-scroll-emulator.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/chartist.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/jquery.raty.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/fonts/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/nouislider.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/explorer.css' %}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.png' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Anti Hoax</title>
+  </head>
+  <body class="">
+
+    {% block body %}
+    {% endblock body %}
+    <!-- /.side-overlay -->
+    <script src="http://maps.googleapis.com/maps/api/js?libraries=weather,geometry,visualization,places,drawing&key=AIzaSyDmXybAJzoPZ6hH-Jhv7QMCSGgQ6MY8WqY" type="text/javascript"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/tether.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/chartist.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/google-map-richmarker.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/google-map-infobox.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/google-map-markerclusterer.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/google-map.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.trackpad-scroll-emulator.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.inlinesvg.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.affix.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.scrollTo.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/libraries/slick/slick.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/nouislider.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.raty.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/wNumb.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/particles.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/explorer.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/explorer-map-search.js' %}"></script>
+  </body>
+</html>
