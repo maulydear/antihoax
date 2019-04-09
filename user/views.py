@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from user.forms import UserForm
+from django.shortcuts import render, redirect
+from user.forms import UserForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -39,7 +39,7 @@ def register(request):
             user = user_form.save()
             user.set_password(user.password)
             user.save()
-            return redirect('user:index')
+            return redirect(reverse('user:index'))
         else:
             print(user_form.errors)
     else:
@@ -49,19 +49,17 @@ def register(request):
                            'registered':registered})
 
 def user_login(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
-        if user:
-            if user.is_active:
-                login(request,user)
-                return HttpResponseRedirect(reverse('news:index'))
-            else:
-                return HttpResponse("Your account was inactive.")
+    authentication = LoginForm(data=request.POST or None)
+    if request.method == 'POST': 
+        if authentication.is_valid():
+            login(request, authentication.get_user())
+            return HttpResponseRedirect(reverse('news:index'))
         else:
-            print("Someone tried to login and failed.")
-            print("They used username: {} and password: {}".format(username,password))
+            print(authentication.errors)
             return HttpResponse("Invalid login details given")
-    else:
-        return render(request, 'web/user/login.html', {})
+
+    context=dict(
+        auth = authentication
+        )
+
+    return render(request, 'web/user/login.html', context)

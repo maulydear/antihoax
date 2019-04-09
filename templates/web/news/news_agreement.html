@@ -1,0 +1,80 @@
+{% extends "web/base.html" %}
+{% load staticfiles %}
+
+          {% block body %}
+<div class="page-wrapper">
+      <div class="header-wrapper">
+        <div class="header">
+          <div class="container">
+            <div class="header-inner">
+              <div class="navigation-toggle toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <!-- /.header-toggle -->
+              <div class="header-logo">
+                <a href="{% url 'news:index' %}">
+                  <img src="{% static 'assets/img/logo.svg' %}" class="svg" alt="Home">
+                </a>
+                <a href="{% url 'news:index' %}" class="header-title">AntiHoax</a>
+              </div>
+              <!-- /.header-logo -->
+              <div class="header-nav">
+                <div class="primary-nav-wrapper">
+                  <ul class="nav">
+                    <li class="nav-item has-sub-menu">
+                      <a href="#" class="nav-link ">Home</a>
+                      <ul class="sub-menu">
+                        <li><a href="{% url 'news:index' %}?category=politics"><b>1.</b> &nbsp;&nbsp;Politics</a></li>
+                        <li><a href="{% url 'news:index' %}?category=entertainment"><b>2.</b> &nbsp;&nbsp;Entertainment</a></li>
+                        <li><a href="{% url 'news:index' %}?category=sport"><b>3.</b> &nbsp;&nbsp;Sport</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="{% url 'news:news_upload' %}" class="nav-link ">Upload</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{% url 'news:news_history' request.user.id %}" class="nav-link">History Upload</a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- /.primary-nav-wrapper -->
+              </div>
+              <div class="header-toggle toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <!-- /.header-toggle -->
+              
+            </div>
+            <!-- /.header-inner -->
+          </div>
+          <!-- /.container -->
+        </div>
+        <!-- /.header -->
+      </div>
+<div class="container">
+      <div class="row justify-content-center">
+        <div class="col-10">
+            <h1 class="mt-2">News Agreement</h1>
+          <hr class="mt-0 mb-4">
+  <form  method="POST" action="{{ action }}" enctype="multipart/form-data">
+	{% csrf_token %}
+  <div class="form-group">
+    <input type="hidden" name="type" value="{{ request.GET.type }}">
+    <label class="col-form-label-sm">{{ newsagreement.image.label }}</label>
+    {{ newsagreement.image }}
+  </div>
+  <div class="form-group">
+    <label class="col-form-label-sm">{{ newsagreement.url.label }}</label>
+    {{ newsagreement.url }}
+	</div>
+	<button class="btn btn-primary" type="submit">Submit</button>
+  </form>
+		 </div>
+      </div>
+  </div>
+
+          {% endblock body %}

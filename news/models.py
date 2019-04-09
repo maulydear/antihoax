@@ -15,7 +15,7 @@ class News(models.Model):
 		)
 	category = models.CharField(choices=CATEGORY, max_length=50)
 	url = models.URLField(blank=True)
-	user = models.ForeignKey('user.User',on_delete=models.CASCADE)
+	user = models.ForeignKey('user.User',on_delete=models.CASCADE, related_name="+")
 	date = models.DateField(("Date"), default=datetime.date.today)
 
 	def __str__(self):
@@ -23,3 +23,13 @@ class News(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('news_update', kwargs={'pk': self.pk})
+
+class Vote(models.Model):
+	TYPE = Choices(
+		('agree','Agree'),
+		('disagree','Disagree'),
+		)
+	type = models.CharField(choices=TYPE, max_length=50)
+	image = models.ImageField(upload_to='image/',blank=True)
+	url = models.URLField(blank=True)
+	news = models.ForeignKey('news.News',on_delete=models.CASCADE)

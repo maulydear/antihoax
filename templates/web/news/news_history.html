@@ -56,10 +56,10 @@
         <!-- /.header -->
       </div>
       <!-- /.header-wrapper -->
-
-      <div class="col-md-8 col-lg-9">
+            <div class="container">
+                <div class="col-md-8 col-lg-9">
                   <div class="posts">
-                    {% for n in news %}
+                    {% for n in newshistory %}
                     <div class="post">
                       <div class="post-image">
                         <img src="/media/{{ n.image }}"/>
@@ -84,18 +84,20 @@
                         <div class="post-meta-item">
                           <i class="fa fa-comment"></i> <a href="">{{ n.url }}</a>
                         </div>
+                        <td><a href="{% url 'news:news_update' n.id %}">Edit</a></td>
+                        <td><a href="{% url 'news:news_delete' n.id %}">Delete</a></td>
                         <!-- /.post-meta-item -->
-                      </div>
+                        </div>
                       <!-- /.post-meta -->
-                      <div class="post-content">
-                        <p>{{ n.desc }}</p>
-                      </div>
+                        <div class="post-content">
+                          <p>{{ n.desc }}</p>
+                        </div>
                       <!-- /.post-content -->
                       <div class="post-read-more">
-                        <a href="{% url 'news:news_detail' n.id %}" class="btn btn-primary">Read More <i class="fa fa-chevron-right"></i></a>
+                        <a href="{% url 'news:news_detail' n.id %}" class="btn btn-primary btn-lg">Read More <i class="fa fa-chevron-right"></i></a>
                       </div>
                       <!-- /.post-read-more -->
-                    </div>
+                  </div>
                     {% endfor %}
                   <ul class="pagination pull-right">
                     <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -105,6 +107,7 @@
                     <li class="page-item"><a class="page-link" href="#">Next</a></li>
                   </ul>
                 </div>
-                <!-- /.col-* -->
               </div>
+            </div>
+                <!-- /.col-* -->
 {% endblock body %}

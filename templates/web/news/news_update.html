@@ -35,7 +35,7 @@
                       <a href="{% url 'news:news_upload' %}" class="nav-link ">Upload</a>
                     </li>
                     <li class="nav-item">
-                      <a href="{% url 'news:news_history' %}" class="nav-link">History Upload</a>
+                      <a href="{% url 'news:news_history' request.user.id %}" class="nav-link">History Upload</a>
                     </li>
                   </ul>
                 </div>
@@ -64,24 +64,24 @@
     <form  method="POST" action="{{ action }}" enctype="multipart/form-data">
 	{% csrf_token %}
 	<div class="form-group">
-    <label class="col-form-label-sm">{{ newsdetail.title.label }}</label>
-    {{ newsdetail.title }}
+    <label class="col-form-label-sm">{{ newsupdate.title.label }}</label>
+    {{ newsupdate.title }}
   </div>
   <div class="form-group">
-    <label class="col-form-label-sm">{{ newsdetail.image.label }}</label>
-    {{ newsdetail.image }}
+    <label class="col-form-label-sm">{{ newsupdate.image.label }}</label>
+    {{ newsupdate.image }}
   </div>
   <div class="form-group">
-    <label class="col-form-label-sm">{{ newsdetail.desc.label }}</label>
-    {{ newsdetail.desc }}
+    <label class="col-form-label-sm">{{ newsupdate.desc.label }}</label>
+    {{ newsupdate.desc }}
 	</div>
 	<div class="form-group">
-    <label class="col-form-label-sm">{{ newsdetail.category.label }}</label>
-    {{ newsdetail.category }}
+    <label class="col-form-label-sm">{{ newsupdate.category.label }}</label>
+    {{ newsupdate.category }}
 	</div>
   <div class="form-group">
-    <label class="col-form-label-sm">{{ newsdetail.url.label }}</label>
-    {{ newsdetail.url }}
+    <label class="col-form-label-sm">{{ newsupdate.url.label }}</label>
+    {{ newsupdate.url }}
 	</div>
 	<button class="btn btn-primary" type="submit">Submit</button>
 		</div>

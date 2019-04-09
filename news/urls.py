@@ -10,6 +10,9 @@ urlpatterns = [
 	path('update/<int:pk>', views.news_update, name='news_update'),
 	path('history/<int:pk>', views.news_history, name='news_history'),
 	path('delete/<int:pk>', views.news_delete, name='news_delete'),
+	path('<int:pk>/agreement/', views.agreement, name='agreement'),
+	path('agree', views.agree, name='agree'),
+	path('disagree', views.disagree, name='disagree'),
 	
 ]
 

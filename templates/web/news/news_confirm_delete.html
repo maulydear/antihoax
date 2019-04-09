@@ -1,0 +1,5 @@
+<h1>News Delete</h1>
+<form method="post">{% csrf_token %}
+    Are you sure you want to delete "{{ n }}" ?
+    <input type="submit" value="Submit" />
+</form>
