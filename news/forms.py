@@ -46,10 +46,12 @@ class NewsAgreement(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		self.news_id = kwargs.pop('news_id', None)
+		self.user_id = kwargs.pop('user_id', None)
 		super(NewsAgreement, self).__init__(*args, **kwargs)
 
 	def save(self, *args, **kwargs):
 		vote = super(NewsAgreement, self).save(commit=False, *args, **kwargs)
 		vote.news_id = self.news_id
+		vote.user_id = self.user_id
 		vote.save()
 		return vote

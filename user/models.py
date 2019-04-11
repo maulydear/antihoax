@@ -40,7 +40,3 @@ class User(AbstractBaseUser, PermissionsMixin):
        'staff status', default=False, blank=True, null=True)
 
 	objects = CustomUserManager()
-
-
-
-	

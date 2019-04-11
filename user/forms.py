@@ -18,5 +18,5 @@ class UserForm(forms.ModelForm):
 		return user
 
 class LoginForm(AuthenticationForm):
-	username=forms.CharField(max_length=50)
-	password = forms.CharField(widget=forms.PasswordInput())
+	username=forms.CharField(max_length=50,widget=forms.TextInput(attrs={'class': 'form-control'}))
+	password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))

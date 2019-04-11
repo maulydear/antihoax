@@ -4,6 +4,7 @@ from .forms import NewsForm, NewsAgreement
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template.response import TemplateResponse
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ValidationError
 
 def index(request):
 	newslimit = News.objects.all().order_by('-id')[:3]
@@ -48,8 +49,8 @@ def news_upload(request):
 
 def news_detail(request, pk):
 	news = get_object_or_404(News, pk=pk)
-	agree = Vote.objects.filter(type='agree').count()
-	disagree = Vote.objects.filter(type='disagree').count()
+	agree = Vote.objects.filter(type='agree', news=pk).count()
+	disagree = Vote.objects.filter(type='disagree', news=pk).count()
 	context = dict(
 		newsdetail = news,
 		agree = agree,
@@ -92,11 +93,17 @@ def news_history(request, pk):
 
 @login_required
 def agreement(request, pk):
-	form = NewsAgreement(request.POST or None, request.FILES or None, news_id=pk)
+	form = NewsAgreement(request.POST or None, request.FILES or None, news_id=pk, user_id=request.user.id)
+	vote = Vote.objects.filter(user_id=request.user.id)
+
+	for n in vote:
+		if pk == n.news.id:
+			return TemplateResponse(request,'web/news/news_agreement.html', {'Status': 'Sorry, You can not vote twice... '})
 
 	context = dict(
 		newsagreement = form
 	)
+
 	if form.is_valid():
 		form.save()
 		return redirect('news:index')

@@ -17,17 +17,21 @@
                 <a href="index.html">
                   <img src="{% static 'assets/img/logo.svg' %}" class="svg" alt="Home">
                 </a>
-                <a href="{% url 'news:index' %}" class="header-title">AntiHoax</a>
+                <a href="{% url 'user:index' %}" class="header-title">AntiHoax</a>
               </div>
               <!-- /.header-logo -->
               <div class="header-nav">
                 <div class="primary-nav-wrapper">
                   <ul class="nav">
+                    <li>
+                      <a href="{% url 'user:index' %}" class="nav-link ">Home</a>
+                    </li>
                     <li class="nav-item has-sub-menu">
-                      <a href="#" class="nav-link ">Menu</a>
+                      <a href="#" class="nav-link ">Category</a>
                       <ul class="sub-menu">
-                        <li><a href="{% url 'user:user_login' %}">Login</a></li>
-                        <li><a href="{% url 'user:register' %}">Registration</a></li>
+                        <li><a href="{% url 'user:index' %}?category=politics"><b>1.</b> &nbsp;&nbsp;Politics</a></li>
+                        <li><a href="{% url 'user:index' %}?category=entertainment"><b>2.</b> &nbsp;&nbsp;Entertainment</a></li>
+                        <li><a href="{% url 'user:index' %}?category=sport"><b>3.</b> &nbsp;&nbsp;Sport</a></li>
                       </ul>
                     </li>
                     <li>

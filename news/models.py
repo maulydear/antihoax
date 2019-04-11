@@ -1,7 +1,7 @@
 from django.db import models
 from model_utils import Choices
 from django.urls import reverse
-import datetime
+from django.utils import timezone
 
 # Create your models here.
 class News(models.Model):
@@ -16,7 +16,7 @@ class News(models.Model):
 	category = models.CharField(choices=CATEGORY, max_length=50)
 	url = models.URLField(blank=True)
 	user = models.ForeignKey('user.User',on_delete=models.CASCADE, related_name="+")
-	date = models.DateField(("Date"), default=datetime.date.today)
+	date = models.DateField(("Date"), default=timezone.now)
 
 	def __str__(self):
 		return self.title
@@ -33,3 +33,4 @@ class Vote(models.Model):
 	image = models.ImageField(upload_to='image/',blank=True)
 	url = models.URLField(blank=True)
 	news = models.ForeignKey('news.News',on_delete=models.CASCADE)
+	user = models.ForeignKey('user.User',on_delete=models.CASCADE, related_name="+")

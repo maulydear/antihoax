@@ -23,8 +23,11 @@
               <div class="header-nav">
                 <div class="primary-nav-wrapper">
                   <ul class="nav">
+                    <li>
+                      <a href="{% url 'news:index' %}" class="nav-link ">Home</a>
+                    </li>
                     <li class="nav-item has-sub-menu">
-                      <a href="#" class="nav-link ">Home</a>
+                      <a href="#" class="nav-link ">Category</a>
                       <ul class="sub-menu">
                         <li><a href="{% url 'news:index' %}?category=politics"><b>1.</b> &nbsp;&nbsp;Politics</a></li>
                         <li><a href="{% url 'news:index' %}?category=entertainment"><b>2.</b> &nbsp;&nbsp;Entertainment</a></li>
@@ -37,9 +40,9 @@
                     <li class="nav-item">
                       <a href="{% url 'news:news_history' request.user.id %}" class="nav-link">History Upload</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                       <a href="{% url 'user:user_logout' %}" class="nav-link">logout</a>
-                    </li>
+                    </li> -->
                   </ul>
                 </div>
                 <!-- /.primary-nav-wrapper -->
@@ -118,7 +121,6 @@
                   <!-- /.sidebar -->
                 </div>
                 <!-- /.col-* -->
-                
                 <div class="col-md-8 col-lg-9">
                   <div class="posts">
                     {% for n in news %}
@@ -167,8 +169,8 @@
                     <li class="page-item"><a class="page-link" href="#">Next</a></li>
                   </ul>
                 </div>
+            </div>
                 <!-- /.col-* -->
-              </div>
               <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
